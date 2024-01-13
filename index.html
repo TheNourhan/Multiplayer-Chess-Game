@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess</title>
+    <link rel="stylesheet" href="styles.css">
+    <!--<style>
+         #myDiv {
+      width: 300px;
+      height: 300px;
+      background-color: lightblue;
+      position: relative;
+    }
+
+    #myDiv::before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: red;
+      border-radius: 50%; /* Creates a circular shape */
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    #myDivboard {
+        width: 300px;
+      height: 300px;
+      background-color: lightblue;
+      padding: 10px; /* Adjust the padding to control the space between content and border */
+      box-sizing: border-box; /* Include padding and border in the element's total width and height */
+     
+      border: 2px solid black; /* Set the border to black with a 2px width */
+    }
+      </style>
+    -->
+
+    
+</head>
+<body>
+   <!---- <div id="myDiv"></div> 
+
+   <div id="myDivboard"></div>
+
+   ---->
+
+   <div id="frame">
+  <div id="up">A B C D E F G H</div>
+  <div id="down">A B C D E F G H</div>
+  
+  <div id="left">
+    <div class="row-label">8</div>
+    <div class="row-label">7</div>
+    <div class="row-label">6</div>
+    <div class="row-label">5</div>
+    <div class="row-label">4</div>
+    <div class="row-label">3</div>
+    <div class="row-label">2</div>
+    <div class="row-label">1</div>
+  </div>
+  <!----
+  <div id="right">
+    <div class="row-label">8</div>
+    <div class="row-label">7</div>
+    <div class="row-label">6</div>
+    <div class="row-label">5</div>
+    <div class="row-label">4</div>
+    <div class="row-label">3</div>
+    <div class="row-label">2</div>
+    <div class="row-label">1</div>
+  </div>
+  --->
+  <div id="gameboard"></div>
+</div>
+    <p>It is <span id="player"></span>`s go.</p>
+    <p id="info-display"></p>
+    
+
+    <script src="piecesImages.js"></script>
+    <script src="pieces.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
