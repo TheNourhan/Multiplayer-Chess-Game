@@ -1,6 +1,50 @@
+
 body{
     background-color: rgb(110, 101, 141);
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
+
+.navbar {
+    background-color: #53efc0;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+
+    height: 70px;
+  /* Adjust the width as needed */
+    /* Optional: Set a maximum width for larger screens */
+    /*margin: 0 auto;  Center the navbar */
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-right: 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    color: #ffd700; /* Change the color on hover */
+}
+
 #gameboard{
     width: 480px;
     height: 480px;
