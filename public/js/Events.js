@@ -86,7 +86,8 @@ export default class Events{
                     oldTargetId = draggedPiece.parentNode.getAttribute('square-id');
                     
                     if(this.checkForWin()){
-                        
+                        const celebrating = document.querySelector('.confetti');
+                        celebrating.style.display = 'block';
                         return [squareId, oldTargetId];
                     }
                     return [squareId, oldTargetId];
@@ -162,7 +163,6 @@ export default class Events{
         }
     }
     checkForWin(){
-        
         const kings = Array.from(document.querySelectorAll('#king'));
         
         if(!kings.some(king => king.firstChild.classList.contains('white'))){
@@ -172,7 +172,7 @@ export default class Events{
             allSquares.forEach(square => square.firstChild?.setAttribute('draggable', false));
             return true;
         }
-        if(!kings.some(king => king.firstChild.classList.contains('black'))){
+        else if(!kings.some(king => king.firstChild.classList.contains('black'))){
             this.isPlayerWin = true;
             this.infoDisplay.innerHTML = "White player wins!";
             const allSquares = document.querySelectorAll('.square');
@@ -185,10 +185,13 @@ export default class Events{
         if(this.playerGo === "white"){
             this.playerGo = "black";
             this.playerDisplay.textContent = this.playerGo;
+            this.playerDisplay.style.color = this.playerGo;
         }else{
             this.playerGo = "white";
             this.playerDisplay.textContent = this.playerGo;
-        }      
+            this.playerDisplay.style.color = this.playerGo;
+        }     
+        //this.playerDisplay.style.marginRight = '2px'; 
     }
     reverseIds(){
         const allSquares = document.querySelectorAll(".square");

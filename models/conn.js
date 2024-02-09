@@ -1,16 +1,10 @@
 const mongoose = require('mongoose');
-/*
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useUnifiedTopology', true);
-mongoose.set('useFindAndModify', false);
-*/
-
 class Database{
     constructor(){
         this.connect();
     }
     connect(){
-        mongoose.connect("mongodb+srv://nourhanmhasan:PqMqLUJzXSWJggdj@twitterclonecluster.vkcy98e.mongodb.net/")
+        mongoose.connect(process.env.MONGO_URL)
         .then(()=>{
             console.log("database connection successful");
         })

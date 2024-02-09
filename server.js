@@ -1,60 +1,43 @@
+require('dotenv').config();
 const express = require('express');
-const { join } = require('path');
-const http = require('http');
-const { Server } = require('socket.io');
+const bodyParser = require('body-parser');
 const cors = require('cors');
-
+const http = require('http');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const { initializeSocket } = require('./socket/socketLogic');
+const database = require('./models/conn');
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server);
 
-// set template engine
-app.set("view engine", "ejs");
-//app.set("view engine", "pug");
+// Middleware
+app.use(cookieParser());
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true
+}));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.set("views", "views");
-
+app.set("view engine", "ejs");
 app.use(express.static('public'));
 app.use(cors());
 
-
 // Routes
-const loginRoute = require('./routes/loginRoutes');
-const registerRoute = require('./routes/registerRoutes');
-const whitePlayer = require('./routes/whitePlayer');
-const blackPlayer = require('./routes/blackPlayer');
-//const gameHome = require('./routes/gameHome');
-app.use("/login", loginRoute);
-app.use("/register", registerRoute);
-app.use("/white", whitePlayer);
-app.use("/black", blackPlayer);
+const login_system_Route = require('./routes/loginSystemRoutes');
+const players = require('./routes/playersRoutes');
+const find_opponent = require('./routes/find-opponent-Routes');
+app.use("/find-opponent", find_opponent);
+app.use("/", login_system_Route);
+app.use("/", players);
 
-app.get('/', (req, res) => {
-    //res.sendFile(join(__dirname, 'index.html'));
-});
+// Socket.IO setup
+const io = initializeSocket(server);
 
-io.on('connection', (socket) => {
-    console.log('a user connected with socket id', socket.id);  
-    socket.on('move', (data) => {
-        console.log(`Move received from user {${socket.id}}: ${JSON.stringify(data)}`);
-        // Emit the 'new-move' event to all connected clients, excluding the sender
-        socket.broadcast.emit('new-move', data);
-    });
-    socket.on('player', (data) => {
-        console.log(`Player received from user {${socket.id}}: ${JSON.stringify(data)}`);
-        // Emit the 'change-player' event to all connected clients
-        io.emit('change-player', data);
-    });
-    socket.on('win', (data) => {
-        console.log(`Player {${socket.id}} is win ${JSON.stringify(data)}`);
-        // Emit the 'check-for-win' event to all connected clients, excluding the sender
-        socket.broadcast.emit('check-for-win', data);
-    });
-    socket.on('disconnect', () => {
-        console.log('user disconnected with socket id', socket.id);
-    });
+server.listen(process.env.PORT || 3001, () => {
+    console.log(`listening on http://localhost:${process.env.PORT}`);
 });
 
 
-server.listen(3001, () => {
-    console.log('listening on http://localhost:3001');
-});
+
