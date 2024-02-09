@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= color %> player</title>
+    
+    <link rel="stylesheet" type="text/css" href="/css/game-board.css">
+    <link rel="stylesheet" type="text/css" href="/css/celebrating-win.css">
+
+   <style>
+    .alert {
+            position: relative;
+            top: 10;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            padding: 10px;
+            margin: 10px;
+            line-height: 1.8;
+            border-radius: 5px;
+            cursor: hand;
+            cursor: pointer;
+            font-family: sans-serif;
+            font-weight: 400;
+        }
+        .alertCheckbox {
+            display: none;
+        }
+        :checked + .alert {
+            display: none;
+        }
+        .alertText {
+            display: table;
+            margin-top: 30px;
+
+            text-align: center;
+            font-size: 16px;
+        }
+        .alertClose {
+            float: right;
+            padding-top: 5px;
+            font-size: 10px;
+        }
+        .clear {
+            clear: both;
+        }
+        .info {
+            background-color: #EEE;
+            border: 1px solid #DDD;
+            color: #000000;
+        }
+        .join-button{
+            position: absolute;
+            margin-top: 50px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .error {
+            background-color: #FEE;
+            border: 1px solid #EDD;
+            color: rgb(0, 0, 0);
+            box-shadow: 0 0 2em 0.2em hsl(0, 100%, 69%);
+
+            
+        }
+        #withdrawal-alert{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            display: none;
+        }
+        #withdrawal-game-btn{
+            position: absolute;
+            margin-top: 70px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            width: 100px; 
+            height: 30px; 
+            background-color: hsl(0, 100%, 69%);
+        }
+   </style>
+</head>
+<body>
+  
+    <nav class="navbar">
+      <div class="my-username"></div>
+      
+      <ul class="nav-links info-container">
+          <li> <p id="info">Player:<span id="player"></span></p></li>
+          <li> <div id="timer"></div></li>
+          <li> <a href="#" id="withdrawal">Quit</a></li>
+          
+      </ul>
+
+    </nav>
+
+    <p id="info-display"></p>
+
+    <div class="confetti">
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+    </div>
+
+    <div id="frame">
+        <div id="up">A B C D E F G H</div>
+        <div id="down">A B C D E F G H</div>
+        <div id="left">
+          <div class="row-label">8</div>
+          <div class="row-label">7</div>
+          <div class="row-label">6</div>
+          <div class="row-label">5</div>
+          <div class="row-label">4</div>
+          <div class="row-label">3</div>
+          <div class="row-label">2</div>
+          <div class="row-label">1</div>
+        </div>
+        <div id="right">
+          <div class="row-label">8</div>
+          <div class="row-label">7</div>
+          <div class="row-label">6</div>
+          <div class="row-label">5</div>
+          <div class="row-label">4</div>
+          <div class="row-label">3</div>
+          <div class="row-label">2</div>
+          <div class="row-label">1</div>
+        </div>
+    
+        <div id="gameboard" class="<%= color %>"></div>
+    </div>
+
+    <label id="withdrawal-alert">
+      <input type="checkbox" class="alertCheckbox" autocomplete="off" />
+      <div class="alert error">
+        <span class="alertClose">X</span>
+        <span class="alertText">
+            Are you sure you want to quit from the game?
+            <br> 
+            <button id="withdrawal-game-btn">Quit</button>
+            <br class="clear"/>
+        </span>
+      </div>
+    </label>
+    
+    <div class="taken-pieces-board white"></div>
+    <div class="taken-pieces-board black"></div>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module" src="/js/game-board.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" type="text/css" href="/css/find-opponent.css">
+    
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="my-username"></div>
+        
+        <ul class="nav-links info-container">
+            <li> <a href="/logout" id="logout">Logout</a></li>
+        </ul>
+  
+    </nav>
+
+
+    <div class="contener">
+        <p class="p1">Find Player By:</p>
+        <form id="find-by-username" class="align-items"  method="post">
+            <p>Username</p>
+            <!-- Hidden input for storing the username -->
+            <input type="hidden" name="hidden-username" id="hidden-username" value="<%= logUsername || '' %>" />
+            <input type="hidden" name="hidden-search-username" id="hidden-search-username" value="<%= searchedUsername || '' %>" />
+
+            <input type="text" name="find-by-username" placeholder="username" required="" />
+            <br><br>
+            <input id="find-username-btn" class="mybutton" type="submit" value="Find" />
+        </form>   
+        
+        <p >OR</p>
+
+        <div id="random-selection" class="align-items">
+            <p>Random Selection</p>
+            <input id="random-selection-btn" class="mybutton" type="submit" value="Find" />
+        </div>   
+    </div>
+
+
+    <label id="join-game">
+        <input type="checkbox" class="alertCheckbox" autocomplete="off" />
+        <div class="alert info">
+          <span class="alertClose">X</span>
+          
+          <span class="alertText">Player <span id="send-invite"></span><br> Send an invitation to <br>Player <span id="receive-invite"></span> <br class="clear"/></span>
+          <input class="join-button" id="accepted-game" type="submit" value="Accepted" />
+          
+          <input class="join-button" id="refused-game" type="submit" value="Refused" />
+        </div>
+    </label>
+
+    <label id="decline-invite">
+        <input type="checkbox" class="alertCheckbox" autocomplete="off" />
+        <div class="alert error">
+          <span class="alertClose">X</span>
+          <span class="alertText decline">Decline invitation
+          <br class="clear"/>
+        </span>
+        </div>
+    </label>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/find-opponent.js"></script> 
+</body>
+</html>
+

@@ -76,17 +76,33 @@ if(colorBoard === 'black'){
     eventHandler.reverseIds();
 }
 
+const urlParams = new URLSearchParams(window.location.search);
+const username = urlParams.get('username');
+
+const myUsernameDiv = document.querySelector('.my-username');
+if (myUsernameDiv && username) {
+    myUsernameDiv.textContent = `Hello, ${username}`;
+}
 const socket = io();
+socket.emit('save_username_sockitId', {username: username});
+
+const myRoomName = urlParams.get('room');
+socket.emit('join-game',{roomName:myRoomName});
+
+socket.on('join-player',(data)=>{
+    const roomName = data.roomName;
+    console.log('join player to game', roomName, " player one: ",data.player_one, " player two: ",data.player_two);
+});
 
 allSquares.forEach(square => {
     square.addEventListener('dragstart', (e) => eventHandler.dragStart(e));
     square.addEventListener('dragover', (e) => eventHandler.dragOver(e));
     square.addEventListener('drop', (e) => {
         const [oldStartId, oldTargetId, pieceSVG] = eventHandler.dragDrop(e);
-        socket.emit('player', { color: colorBoard, startId: oldStartId, targetId: oldTargetId });
-        socket.emit('move', { color: colorBoard, startId: oldStartId, targetId: oldTargetId });
+        socket.emit('player', {username: username, roomName: myRoomName, color: colorBoard, startId: oldStartId, targetId: oldTargetId });
+        socket.emit('move', {username: username, roomName: myRoomName, color: colorBoard, startId: oldStartId, targetId: oldTargetId});
         if(eventHandler.isPlayerWin){
-            socket.emit('win', { color: colorBoard, startId: oldStartId, targetId: oldTargetId });
+            socket.emit('win', {username: username, roomName: myRoomName, color: colorBoard, startId: oldStartId, targetId: oldTargetId });
         }
     });
     square.addEventListener('mouseover', (e) => eventHandler.mouse(e, true));
@@ -104,5 +120,23 @@ socket.on('change-player', (data) => {
 socket.on('check-for-win', (data) => {
     console.log('New win received:', data);
     eventHandler.checkForWin();
+});
+
+const href_link = `/find-opponent?logUsername=${username}`;
+const withdrawal = document.querySelector('#withdrawal');
+withdrawal.addEventListener('click', ()=>{
+    const withdrawal_alert = document.querySelector('#withdrawal-alert');
+    withdrawal_alert.style.display = 'block';
+});
+const withdrawal_game_btn = document.querySelector('#withdrawal-game-btn');
+withdrawal_game_btn.addEventListener('click', ()=>{
+    socket.emit('withdrawal-player',{username: username, roomName: myRoomName});
+    window.location.href = href_link;
+});
+socket.on('quit', (data)=>{
+    const infoDisplay = document.querySelector("#info-display");
+    infoDisplay.innerHTML = "The other player left the game..";
+    const allSquares = document.querySelectorAll('.square');
+    allSquares.forEach(square => square.firstChild?.setAttribute('draggable', false));
 });
 
