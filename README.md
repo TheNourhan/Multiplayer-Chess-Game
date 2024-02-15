@@ -30,7 +30,7 @@ A multiplayer chess game web application built using JavaScript, Node.js, Expres
     npm install
     ```
 4. Set up environment variables:
-   Create a .env file in the root directory and add the following:
+- Create a .env file in the root directory and add the following:
 
     ```bash
     SESSION_SECRET=your_session_secret
