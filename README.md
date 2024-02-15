@@ -37,18 +37,11 @@ A multiplayer chess game web application built using JavaScript, Node.js, Expres
     MONGO_URL=your_url
     PORT=3001
     ```
-5. Start the server:
+6. Start the server:
     ```bash
     npm start
     ```
-6. Open http://localhost:3001 in your web browser.
-
-## Usage
-1. Log in with your credentials or create a new account.
-2. Navigate to the "Find Opponent" section to start a new game.
-3. Click on a piece to select it and see available moves highlighted.
-4. Make your move by clicking on the destination square.
-5. Enjoy playing chess with friends or random opponents!
+7. Open http://localhost:3001 in your web browser.
 
 ## Technologies Used
 1. Node.js
@@ -58,6 +51,13 @@ A multiplayer chess game web application built using JavaScript, Node.js, Expres
 5. JavaScript
 6. EJS
 7. CSS
+   
+## Usage
+1. Log in with your credentials or create a new account.
+2. Navigate to the "Find Opponent" section to start a new game.
+3. Click on a piece to select it and see available moves highlighted.
+4. Make your move by clicking on the destination square.
+5. Enjoy playing chess with friends or random opponents!
 
 ## Contributing
 Contributions are welcome! Please follow these guidelines:
