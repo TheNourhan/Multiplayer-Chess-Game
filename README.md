@@ -1,16 +1,16 @@
 # Multiplayer-Chess-Game
 
 ## Overview
-A multiplayer chess game web application built using JavaScript, Node.js, Express.js, Socket.IO, EJS, and CSS. The game allows users to play chess against opponents in real-time, either by searching for specific usernames or by randomly selecting opponents.
+A multiplayer chess game web application built using JavaScript, Node.js, Express.js, MongoDB, Socket.IO, EJS, and CSS. The game allows users to play chess against opponents in real-time, either by searching for specific usernames or by randomly selecting opponents.
 
 ## Features
 
-- **Login System:**  Integrated user authentication system with options for registering an account, logging in, and logging outز
+- **Login System:**  Integrated user authentication system with options for registering an account, logging in, and logging out.
 - **Real-Time Opponent Finding**:
   - **Search by ID**: Users can search for opponents by specifying their usernames, allowing for personalized matchmaking.
   - **Random Selection**: Alternatively, users can opt for random opponent selection, providing a quick and easy way to start a game without specifying a username.
 - **Game Board:** Interactive chessboard with pieces, highlighting legal moves, and capturing animations.
-- **Real-Time Communication:** Real-time chat and game updates using Socket.IO.
+- **Real-Time Communication:** Real-time game updates using Socket.IO.
 
 ## Installation
 
@@ -30,7 +30,7 @@ A multiplayer chess game web application built using JavaScript, Node.js, Expres
     npm install
     ```
 4. Set up environment variables:
-Create a .env file in the root directory and add the following:
+   Create a .env file in the root directory and add the following:
 
     ```bash
     SESSION_SECRET=your_session_secret
