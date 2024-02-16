@@ -4,7 +4,8 @@
 A multiplayer chess game web application built using JavaScript, Node.js, Express.js, MongoDB, Socket.IO, EJS, and CSS. The game allows users to play chess against opponents in real-time, either by searching for specific usernames or by randomly selecting opponents.
 
 ## Watch the full project!
-https://youtu.be/0nlpxmdzTCI?si=hfqEyqR3T441YxKM
+[![Watch the video](https://img.youtube.com/vi/0nlpxmdzTCI/0.jpg)](https://youtu.be/0nlpxmdzTCI?si=hfqEyqR3T441YxKM)
+
 ## Features
 
 - **Login System:**  Integrated user authentication system with options for registering an account, logging in, and logging out.
