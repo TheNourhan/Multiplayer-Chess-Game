@@ -3,6 +3,11 @@
 ## Overview
 A multiplayer chess game web application built using JavaScript, Node.js, Express.js, MongoDB, Socket.IO, EJS, and CSS. The game allows users to play chess against opponents in real-time, either by searching for specific usernames or by randomly selecting opponents.
 
+## Watch the full project!
+- Part 1:
+  https://github.com/TheNourhan/Multiplayer-Chess-Game/assets/109472010/fa3bf388-d1a6-4963-9dab-71c1955c55ea
+- Part 2:
+  https://github.com/TheNourhan/Multiplayer-Chess-Game/assets/109472010/f4e56b61-ce26-4482-ae03-284408ada669
 ## Features
 
 - **Login System:**  Integrated user authentication system with options for registering an account, logging in, and logging out.
